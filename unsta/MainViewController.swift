@@ -14,6 +14,13 @@ class MainViewController: UIViewController {
     
     // MARK: View Properties
     
+    fileprivate lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        return searchController
+    }()
+    
     fileprivate lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.frame.width / 3 - 1, height: self.view.frame.width / 3 - 1)
@@ -44,11 +51,11 @@ class MainViewController: UIViewController {
         configureConstriants()
     }
     
-    
     // MARK: Configure Navigation Bar
     
     func configureNavBar() {
         title = "unsta.me"
+        navigationItem.titleView = searchController.searchBar
     }
     
     // MARK: Configure Views
@@ -63,6 +70,10 @@ class MainViewController: UIViewController {
         collectionView <- [
             Edges(0)
         ]
+    }
+    
+    func filterContentForSearchText(searchText: String) {
+        
     }
 
 }
@@ -83,3 +94,15 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 }
 
+extension MainViewController: UISearchResultsUpdating {
+    @available(iOS 8.0, *)
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        filterContentForSearchText(searchText: text)
+    }
+
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        filterContentForSearchText(searchText: text)
+    }
+}
