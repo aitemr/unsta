@@ -16,10 +16,16 @@ class MainViewController: UIViewController {
     
     fileprivate lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         return searchController
+    }()
+    
+    fileprivate lazy var searchbar: UISearchBar = {
+        let searchbar = UISearchBar()
+        searchbar.delegate = self
+        searchbar.placeholder = "@yuframe"
+        return searchbar
     }()
     
     fileprivate lazy var layout: UICollectionViewFlowLayout = {
@@ -42,7 +48,6 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
-    
     // MARK: View LifeCycle
     
     override func viewDidLoad() {
@@ -56,7 +61,7 @@ class MainViewController: UIViewController {
     
     func configureNavBar() {
         title = "unsta.me"
-        navigationItem.titleView = searchController.searchBar
+        navigationItem.titleView = searchbar
         definesPresentationContext = true
     }
     
@@ -75,12 +80,13 @@ class MainViewController: UIViewController {
     }
     
     func filterContentForSearchText(searchText: String) {
-        print(searchText)
+         print(searchText)
     }
 
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -93,18 +99,22 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(for: indexPath) as MainCollectionViewCell
         return cell
     }
-
 }
 
-extension MainViewController: UISearchResultsUpdating {
-    @available(iOS 8.0, *)
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
+extension MainViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        guard let text = searchBar.text else { return }
         filterContentForSearchText(searchText: text)
     }
-
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        filterContentForSearchText(searchText: text)
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
     }
 }
