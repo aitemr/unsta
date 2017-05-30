@@ -6,5 +6,6 @@ target 'unsta' do
   pod 'Sugar', '3.0'
   pod 'Tactile', '~> 2.0'
   pod 'Reusable'
+  pod 'Moya'
   use_frameworks!
 end
