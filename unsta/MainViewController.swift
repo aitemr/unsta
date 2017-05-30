@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         return searchController
     }()
     
@@ -56,6 +57,7 @@ class MainViewController: UIViewController {
     func configureNavBar() {
         title = "unsta.me"
         navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
     }
     
     // MARK: Configure Views
@@ -73,7 +75,7 @@ class MainViewController: UIViewController {
     }
     
     func filterContentForSearchText(searchText: String) {
-        
+        print(searchText)
     }
 
 }
