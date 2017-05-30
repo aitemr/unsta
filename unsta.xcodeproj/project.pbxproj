@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		500DE8E825B5EF2834156D47 /* Pods_unsta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FAD9C085C1F8C4ED3E0F5C /* Pods_unsta.framework */; };
+		A60C51201EDDAF31006B9440 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60C511F1EDDAF31006B9440 /* MainCollectionViewCell.swift */; };
 		A665EA8C1EDDA585002999FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A665EA8B1EDDA585002999FF /* AppDelegate.swift */; };
 		A665EA8E1EDDA585002999FF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A665EA8D1EDDA585002999FF /* MainViewController.swift */; };
 		A665EA931EDDA585002999FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A665EA921EDDA585002999FF /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* Begin PBXFileReference section */
 		55A52E697E8CAA5B3179188F /* Pods-unsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsta.release.xcconfig"; path = "Pods/Target Support Files/Pods-unsta/Pods-unsta.release.xcconfig"; sourceTree = "<group>"; };
 		5ECAE5DFBD4415767307AD10 /* Pods-unsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unsta/Pods-unsta.debug.xcconfig"; sourceTree = "<group>"; };
+		A60C511F1EDDAF31006B9440 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		A665EA881EDDA585002999FF /* unsta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = unsta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A665EA8B1EDDA585002999FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A665EA8D1EDDA585002999FF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		A665EA9E1EDDA7B3002999FF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A60C511F1EDDAF31006B9440 /* MainCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A665EA8E1EDDA585002999FF /* MainViewController.swift in Sources */,
+				A60C51201EDDAF31006B9440 /* MainCollectionViewCell.swift in Sources */,
 				A665EA8C1EDDA585002999FF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
