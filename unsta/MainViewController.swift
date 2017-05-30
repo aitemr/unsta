@@ -39,20 +39,30 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         configureViews()
         configureConstriants()
+    }
+    
+    
+    // MARK: Configure Navigation Bar
+    
+    func configureNavBar() {
+        title = "unsta.me"
     }
     
     // MARK: Configure Views
     
     func configureViews() {
-        
+        view.addSubview(collectionView)
     }
     
     // MARK: Configure Constraints
     
     func configureConstriants() {
-        
+        collectionView <- [
+            Edges(0)
+        ]
     }
 
 }
@@ -63,7 +73,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -13,6 +13,15 @@ import EasyPeasy
 
 class MainCollectionViewCell: UICollectionViewCell, Reusable {
     
+    // MARK: Properties
+    
+    lazy var imageView: UIImageView = {
+        return UIImageView().then {
+            $0.image = #imageLiteral(resourceName: "mountain")
+            $0.contentMode = .scaleAspectFit
+        }
+    }()
+    
     // MARK: View LifeCycle
     
     override init(frame: CGRect) {
@@ -28,12 +37,14 @@ class MainCollectionViewCell: UICollectionViewCell, Reusable {
     // MARK: Configure Views
     
     func configureViews() {
-        
+        self.addSubview(imageView)
     }
     
     // MARK: Configure Constraints
     
     func configureConstriants() {
-        
+        imageView <- [
+            Edges(0)
+        ]
     }
 }
