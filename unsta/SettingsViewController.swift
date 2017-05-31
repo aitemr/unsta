@@ -172,7 +172,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return nil
+        switch section {
+        case 0: return "General"
+        case 1: return "Support Us"
+        default: return nil
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{

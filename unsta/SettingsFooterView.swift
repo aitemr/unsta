@@ -14,7 +14,7 @@ final class SettingsFooterView: UIView {
 
     fileprivate lazy var madeWithLabel: UILabel = {
         return  UILabel().then {
-            $0.text = "Made with"
+            $0.text = "from Pranksters"
         }
     }()
 
@@ -27,13 +27,13 @@ final class SettingsFooterView: UIView {
 
     fileprivate lazy var inLabel: UILabel = {
         return  UILabel().then {
-            $0.text = "in"
+            $0.text = "to"
         }
     }()
 
     fileprivate lazy var almatyLabel: UILabel = {
         return  UILabel().then {
-            $0.text = "Almaty"
+            $0.text = "Pranksters"
         }
     }()
 
