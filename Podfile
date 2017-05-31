@@ -8,5 +8,6 @@ target 'unsta' do
   pod 'Reusable'
   pod 'Moya'
   pod 'Permission/Notifications', :git => 'https://github.com/leoneparise/Permission', :branch => 'master'
+  pod 'Kingfisher', '~> 3.2.0'
   use_frameworks!
 end
