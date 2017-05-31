@@ -9,11 +9,17 @@
 import UIKit
 import Sugar
 import EasyPeasy
+import Kingfisher
 
 class MainViewController: UIViewController {
     
     // MARK: View Properties
     
+    var photos: [Photo] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     fileprivate lazy var searchbar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.delegate = self
@@ -72,10 +78,21 @@ class MainViewController: UIViewController {
         ]
     }
     
-    func filterContentForSearchText(searchText: String) {
-         view.endEditing(true)
-         print(searchText)
+    // MARK: Fetch Data
+
+    func fetchPhotoBy(username: String) {
+        if !username.isEmpty {
+            Photo.fetchPhotoBy(username: username, completion: { (result, error) in
+                if error == nil {
+                    guard let result = result else { return }
+                    self.photos = result
+                } else {
+                    print("asdcasd")
+                }
+            })
+        }
     }
+    
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -85,11 +102,20 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath) as MainCollectionViewCell
+        if let photoUrl = photos[indexPath.item].url {
+            if let url = URL(string: photoUrl) {
+                cell.imageView.kf.setImage(with: url,
+                                           placeholder: #imageLiteral(resourceName: "mountain"),
+                                           options: [.transition(.fade(1))],
+                                           progressBlock: nil,
+                                           completionHandler: nil)
+            }
+        }
         return cell
     }
 }
@@ -104,8 +130,8 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-        guard let text = searchBar.text else { return }
-        filterContentForSearchText(searchText: text)
+        guard let username = searchBar.text else { return }
+        fetchPhotoBy(username: username)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
