@@ -28,10 +28,11 @@ extension AppDelegate {
         }
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print(deviceToken.base64EncodedString())
+        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
+        print(token)
     }
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        if let aps = userInfo["aps"] as? NSDictionary, let message = aps["message"] as? String {
+        if let aps = userInfo["aps"] as? NSDictionary, let message = aps["alert"] as? String {
             print(aps)
             Drop.down(message, state: .success)
         }
