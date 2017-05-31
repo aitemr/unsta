@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SVProgressHUD
 
 class Photo: NSObject {
     
@@ -26,13 +27,10 @@ class Photo: NSObject {
             ]
         
         Alamofire.upload(multipartFormData: { multipartFormData in
-            
             for (key, value) in parameters {
                 guard let data = (value as AnyObject).data(using: String.Encoding.utf8.rawValue, allowLossyConversion: true) else { continue }
                 multipartFormData.append(data, withName: key)
             }
-            
-            
         }, to: "https://unsta.me/site/show/") { result in
             switch result {
             case .success(let upload, _, _):
@@ -53,12 +51,12 @@ class Photo: NSObject {
                                     let photoUrl = Photo(url: url as! String)
                                     urls.append(photoUrl)
                                 } else {
-                                    completion(nil, "sadads")
+                                    completion(nil, "error")
+                                    SVProgressHUD.dismiss()
                                 }
                                 completion(urls, nil)
                             }
                         }
-                        
                     }
                 }
             case .failure(let encodingError):

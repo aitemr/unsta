@@ -11,6 +11,7 @@ import Sugar
 import EasyPeasy
 import Kingfisher
 import PeekView
+import SVProgressHUD
 
 class MainViewController: UIViewController {
     
@@ -28,6 +29,7 @@ class MainViewController: UIViewController {
         let searchbar = UISearchBar()
         searchbar.delegate = self
         searchbar.placeholder = "yuframe"
+        searchbar.autocapitalizationType = .none
         return searchbar
     }()
     
@@ -86,13 +88,19 @@ class MainViewController: UIViewController {
     // MARK: Fetch Data
 
     func fetchPhotoBy(username: String) {
+        SVProgressHUD.show(withStatus: "Loading...")
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.native)
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         if !username.isEmpty {
             Photo.fetchPhotoBy(username: username, completion: { (result, error) in
                 if error == nil {
                     guard let result = result else { return }
                     self.photos = result
+                    SVProgressHUD.dismiss()
                 }
             })
+        } else {
+            SVProgressHUD.showError(withStatus: "Errror")
         }
     }
     
