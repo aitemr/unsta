@@ -14,13 +14,6 @@ class MainViewController: UIViewController {
     
     // MARK: View Properties
     
-    fileprivate lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        return searchController
-    }()
-    
     fileprivate lazy var searchbar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.delegate = self
@@ -60,8 +53,8 @@ class MainViewController: UIViewController {
     // MARK: Configure Navigation Bar
     
     func configureNavBar() {
-        title = "unsta.me"
         navigationItem.titleView = searchbar
+        searchbar.tintColor = UIColor.white
         definesPresentationContext = true
     }
     
@@ -82,7 +75,6 @@ class MainViewController: UIViewController {
     func filterContentForSearchText(searchText: String) {
          print(searchText)
     }
-
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {

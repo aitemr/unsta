@@ -33,7 +33,6 @@ extension AppDelegate {
     }
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         if let aps = userInfo["aps"] as? NSDictionary, let message = aps["alert"] as? String {
-            print(aps)
             Drop.down(message, state: .success)
         }
     }

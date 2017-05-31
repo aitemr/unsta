@@ -7,6 +7,6 @@ target 'unsta' do
   pod 'Tactile', '~> 2.0'
   pod 'Reusable'
   pod 'Moya'
-  pod 'Permission/Notifications'
+  pod 'Permission/Notifications', :git => 'https://github.com/leoneparise/Permission', :branch => 'master'
   use_frameworks!
 end
