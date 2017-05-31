@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     fileprivate lazy var searchbar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.delegate = self
-        searchbar.placeholder = "@yuframe"
+        searchbar.placeholder = "yuframe"
         return searchbar
     }()
     
