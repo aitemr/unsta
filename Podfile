@@ -4,8 +4,8 @@
 target 'unsta' do
   pod 'EasyPeasy'
   pod 'Reusable'
-  pod 'JustPeek'
   pod 'Alamofire', '~> 4.4'
+  pod 'PeekView'
   pod 'Sugar', '3.0'
   pod 'Tactile', '~> 2.0'
   pod 'Kingfisher', '~> 3.2.0'
