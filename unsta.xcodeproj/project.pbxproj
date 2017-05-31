@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		500DE8E825B5EF2834156D47 /* Pods_unsta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FAD9C085C1F8C4ED3E0F5C /* Pods_unsta.framework */; };
+		9337B9E71EDF1680008D90E9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9E61EDF1680008D90E9 /* SettingsViewController.swift */; };
+		9337B9E91EDF168E008D90E9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9E81EDF168E008D90E9 /* SettingsTableViewCell.swift */; };
+		9337B9EB1EDF16BA008D90E9 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9EA1EDF16BA008D90E9 /* SettingsFooterView.swift */; };
+		9337B9ED1EDF2003008D90E9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9EC1EDF2003008D90E9 /* NotificationsTableViewCell.swift */; };
 		93B621431EDE935500A5D9ED /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B621421EDE935500A5D9ED /* AppDelegate+Notifications.swift */; };
 		93B621471EDE93A000A5D9ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B621461EDE93A000A5D9ED /* Constant.swift */; };
 		93B621491EDE961C00A5D9ED /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B621481EDE961C00A5D9ED /* Drop.swift */; };
@@ -22,6 +26,10 @@
 /* Begin PBXFileReference section */
 		55A52E697E8CAA5B3179188F /* Pods-unsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsta.release.xcconfig"; path = "Pods/Target Support Files/Pods-unsta/Pods-unsta.release.xcconfig"; sourceTree = "<group>"; };
 		5ECAE5DFBD4415767307AD10 /* Pods-unsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unsta/Pods-unsta.debug.xcconfig"; sourceTree = "<group>"; };
+		9337B9E61EDF1680008D90E9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9337B9E81EDF168E008D90E9 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		9337B9EA1EDF16BA008D90E9 /* SettingsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
+		9337B9EC1EDF2003008D90E9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		93B621411EDE91D300A5D9ED /* unsta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = unsta.entitlements; sourceTree = "<group>"; };
 		93B621421EDE935500A5D9ED /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		93B621461EDE93A000A5D9ED /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -101,6 +109,9 @@
 			children = (
 				A60C511F1EDDAF31006B9440 /* MainCollectionViewCell.swift */,
 				93B621481EDE961C00A5D9ED /* Drop.swift */,
+				9337B9E81EDF168E008D90E9 /* SettingsTableViewCell.swift */,
+				9337B9EA1EDF16BA008D90E9 /* SettingsFooterView.swift */,
+				9337B9EC1EDF2003008D90E9 /* NotificationsTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -111,6 +122,7 @@
 				A665EA8B1EDDA585002999FF /* AppDelegate.swift */,
 				93B621421EDE935500A5D9ED /* AppDelegate+Notifications.swift */,
 				A665EA8D1EDDA585002999FF /* MainViewController.swift */,
+				9337B9E61EDF1680008D90E9 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -245,7 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		889CE7E4D11C7E9E077F8CD4 /* [CP] Copy Pods Resources */ = {
@@ -270,13 +282,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9337B9EB1EDF16BA008D90E9 /* SettingsFooterView.swift in Sources */,
 				A665EA8E1EDDA585002999FF /* MainViewController.swift in Sources */,
 				A60C51201EDDAF31006B9440 /* MainCollectionViewCell.swift in Sources */,
+				9337B9E91EDF168E008D90E9 /* SettingsTableViewCell.swift in Sources */,
+				9337B9ED1EDF2003008D90E9 /* NotificationsTableViewCell.swift in Sources */,
 				93B621491EDE961C00A5D9ED /* Drop.swift in Sources */,
 				93B621471EDE93A000A5D9ED /* Constant.swift in Sources */,
 				A665EA8C1EDDA585002999FF /* AppDelegate.swift in Sources */,
 				93B621431EDE935500A5D9ED /* AppDelegate+Notifications.swift in Sources */,
 				A6E403191EDEF7ED004E117A /* Photo.swift in Sources */,
+				9337B9E71EDF1680008D90E9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
