@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
     
     func configureNavBar() {
         navigationItem.titleView = searchbar
-        searchbar.tintColor = UIColor.white
+        searchbar.tintColor = .black
         definesPresentationContext = true
     }
     
@@ -73,6 +73,7 @@ class MainViewController: UIViewController {
     }
     
     func filterContentForSearchText(searchText: String) {
+         view.endEditing(true)
          print(searchText)
     }
 }
@@ -98,10 +99,11 @@ extension MainViewController: UISearchBarDelegate {
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        view.endEditing(true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.view.endEditing(true)
+        searchBar.endEditing(true)
         guard let text = searchBar.text else { return }
         filterContentForSearchText(searchText: text)
     }
