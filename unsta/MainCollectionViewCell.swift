@@ -18,7 +18,8 @@ class MainCollectionViewCell: UICollectionViewCell, Reusable {
     lazy var imageView: UIImageView = {
         return UIImageView().then {
             $0.image = #imageLiteral(resourceName: "mountain")
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds = true
         }
     }()
     
