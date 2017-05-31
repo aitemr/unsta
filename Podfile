@@ -7,7 +7,8 @@ target 'unsta' do
   pod 'Tactile', '~> 2.0'
   pod 'Reusable'
   pod 'Moya'
-  pod 'Permission/Notifications', :git => 'https://github.com/leoneparise/Permission', :branch => 'master'
   pod 'Kingfisher', '~> 3.2.0'
+  pod 'Permission/Notifications', :git => 'https://github.com/leoneparise/Permission', :branch => 'master'
+  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   use_frameworks!
 end
