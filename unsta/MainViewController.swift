@@ -10,6 +10,7 @@ import UIKit
 import Sugar
 import EasyPeasy
 import Kingfisher
+import PeekView
 
 class MainViewController: UIViewController {
     
@@ -20,6 +21,9 @@ class MainViewController: UIViewController {
             collectionView.reloadData()
         }
     }
+    
+    var forceTouchAvailable = false
+    
     fileprivate lazy var searchbar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.delegate = self
@@ -51,6 +55,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        forceTouchAvailable = false
         configureNavBar()
         configureViews()
         configureConstriants()
@@ -86,9 +91,37 @@ class MainViewController: UIViewController {
                 if error == nil {
                     guard let result = result else { return }
                     self.photos = result
-                } else {
-                    print("asdcasd")
                 }
+            })
+        }
+    }
+    
+    func longPressCell(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        
+        if let cell = gestureRecognizer.view as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) {
+            let url = photos[(indexPath as NSIndexPath).item].url
+            let controller = DetailImageViewController()
+            controller.imageUrl = url
+            let frame = CGRect(x: 15, y: (UIScreen.main.bounds.height - 300)/2, width: UIScreen.main.bounds.width - 30, height: 300)
+            
+            let options = [
+                PeekViewAction(title: "Save", style: .default),
+                PeekViewAction(title: "Share", style: .default),
+                PeekViewAction(title: "Cancel", style: .destructive)
+            ]
+            PeekView().viewForController(parentViewController: self, contentViewController: controller, expectedContentViewFrame: frame, fromGesture: gestureRecognizer, shouldHideStatusBar: true, menuOptions: options, completionHandler: { optionIndex in
+                switch optionIndex {
+                case 0:
+                    print("Option 1 selected")
+                case 1:
+                    print("Option 2 selected")
+                case 2:
+                    print("Option 3 selected")
+                default:
+                    break
+                }
+            }, dismissHandler: {
+                print("Peekview dismissed!")
             })
         }
     }
@@ -118,6 +151,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
+        if forceTouchAvailable == false {
+            let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressCell(_:)))
+            gesture.minimumPressDuration = 0.5
+            cell.addGestureRecognizer(gesture)
+        }
+    }
 }
 
 extension MainViewController: UISearchBarDelegate {
@@ -136,5 +177,33 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+    }
+}
+
+extension MainViewController: UIViewControllerPreviewingDelegate {
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard #available(iOS 9.0, *) else {
+            return nil
+        }
+        
+        let indexPath = collectionView.indexPathForItem(at: collectionView.convert(location, from:view))
+        if let indexPath = indexPath {
+            let url = photos[(indexPath as NSIndexPath).item].url
+            if let cell = collectionView.cellForItem(at: indexPath) {
+                previewingContext.sourceRect = cell.frame
+                let controller = DetailImageViewController()
+                controller.imageUrl = url
+                return controller
+            }
+        }
+        
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        let controller = DetailImageViewController()
+        controller.imageUrl = (viewControllerToCommit as! DetailImageViewController).imageUrl
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
