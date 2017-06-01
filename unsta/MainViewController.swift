@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
     fileprivate lazy var searchbar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.delegate = self
-        searchbar.placeholder = "Enter private Instagram account"
+        searchbar.placeholder = "username"
         searchbar.autocapitalizationType = .none
         return searchbar
     }()
@@ -62,6 +62,22 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
+    lazy var searchBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.target = self
+        button.action = #selector(showSearchBar)
+        button.image = #imageLiteral(resourceName: "srch")
+        return button
+    }()
+    
+    lazy var settingsBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.target = self
+        button.action = #selector(settingsButtonDidPress)
+        button.image = #imageLiteral(resourceName: "settings")
+        return button
+    }()
+    
     // MARK: View LifeCycle
     
     override func viewDidLoad() {
@@ -75,7 +91,10 @@ class MainViewController: UIViewController {
     // MARK: Configure Navigation Bar
     
     func configureNavBar() {
-        navigationItem.titleView = searchbar
+        title = "unsta.me"
+        navigationItem.leftBarButtonItem = settingsBarButton
+        navigationItem.rightBarButtonItem = searchBarButton
+        navigationController?.navigationBar.tintColor = .black
         searchbar.tintColor = .black
         definesPresentationContext = true
     }
@@ -84,8 +103,6 @@ class MainViewController: UIViewController {
     
     func configureViews() {
         view.addSubview(collectionView)
-        
-      
     }
     
     // MARK: Configure Constraints
@@ -113,7 +130,7 @@ class MainViewController: UIViewController {
                                         : Drop.down("\(username) doesn't have images :(")
                         SVProgressHUD.dismiss()
                     case 1...3:
-                        Drop.down("This username doesn't exist", state: .error)
+                        Drop.down("This username doesn't exist")
                         SVProgressHUD.dismiss()
                     case 4:
                         Drop.down("You will be notified when \(username) will be unlocked")
@@ -145,6 +162,21 @@ class MainViewController: UIViewController {
                 }
             }, dismissHandler: nil)
         }
+    }
+    
+    func showSearchBar() {
+        searchbar.isHidden = false
+        searchbar.showsCancelButton = true
+        searchbar.placeholder = "username"
+        let uiButton = searchbar.value(forKey: "cancelButton") as! UIButton
+        uiButton.setTitle("Cancel", for: UIControlState.normal)
+        self.navigationItem.titleView = searchbar
+        self.navigationItem.rightBarButtonItem = nil
+        searchbar.becomeFirstResponder()
+    }
+    
+    @objc fileprivate func settingsButtonDidPress() {
+        let _ = navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
 }
@@ -188,6 +220,9 @@ extension MainViewController: UISearchBarDelegate {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         view.endEditing(true)
+        searchBar.isHidden = true
+        navigationItem.titleView = nil
+        navigationItem.rightBarButtonItem = searchBarButton
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

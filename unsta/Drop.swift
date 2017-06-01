@@ -16,7 +16,7 @@ public enum DropState {
         case .success: return .red
         case .warning: return .red
         case .error: return .red
-        case .default: return .red
+        case .default: return #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
         }
     }
 }

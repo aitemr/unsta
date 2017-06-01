@@ -71,10 +71,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     func configureNavBar() {
         title = "Settings"
         self.navigationItem.hidesBackButton = true
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 9/255, green: 9/255, blue: 26/255, alpha: 1)
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
+//        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 9/255, green: 9/255, blue: 26/255, alpha: 1)
+//        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = .black
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "close"), style: .plain, target: self, action: #selector(closeButtonPressed(_:)))
     }
 
