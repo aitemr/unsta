@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
         let button = UIBarButtonItem()
         button.target = self
         button.action = #selector(showSearchBar)
-        button.image = #imageLiteral(resourceName: "srch")
+        button.image = #imageLiteral(resourceName: "search")
         return button
     }()
     
@@ -212,7 +212,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         if let imageUrl = images[indexPath.item].url {
             if let url = URL(string: imageUrl) {
                 cell.imageView.kf.setImage(with: url,
-                                           placeholder: #imageLiteral(resourceName: "mountain"),
+                                           placeholder: #imageLiteral(resourceName: "placeholder"),
                                            options: [.transition(.fade(1))],
                                            progressBlock: nil,
                                            completionHandler: nil)
@@ -282,7 +282,7 @@ extension MainViewController: UIViewControllerPreviewingDelegate {
 
 extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return #imageLiteral(resourceName: "search")
+        return #imageLiteral(resourceName: "dzenEmptyDataSetImage")
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -292,11 +292,5 @@ extension MainViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
         return myAttrString
     }
     
-//    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-//        let myString = "Эта функция будет доступна в будущих версиях"
-//        let myAttribute = [ NSForegroundColorAttributeName: UIColor.black ]
-//        let myAttrString = NSAttributedString(string: myString, attributes: myAttribute)
-//        return myAttrString
-//    }
 }
 

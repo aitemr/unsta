@@ -18,7 +18,7 @@ class DetailImageViewController: UIViewController {
     
     lazy var imageView: UIImageView = {
         return UIImageView().then {
-            $0.image = #imageLiteral(resourceName: "mountain")
+            $0.image = #imageLiteral(resourceName: "placeholder")
             $0.contentMode = .scaleAspectFit
         }
     }()
@@ -53,7 +53,7 @@ class DetailImageViewController: UIViewController {
         guard let imageUrl = imageUrl else  { return }
         if let url = URL(string: imageUrl) {
             imageView.kf.setImage(with: url,
-                                  placeholder: #imageLiteral(resourceName: "mountain"),
+                                  placeholder: #imageLiteral(resourceName: "placeholder"),
                                   options: [.transition(.fade(1))],
                                   progressBlock: nil,
                                   completionHandler: nil)
