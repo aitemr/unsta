@@ -144,7 +144,15 @@ class MainViewController: UIViewController {
     }
     
     // MARK: User Interaction
-    
+
+    func saved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            Drop.down(error.localizedDescription, state: .error)
+        } else {
+            Drop.down("Image has been saved to your photos.", state: .success)
+        }
+    }
+
     func longPressCell(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if let cell = gestureRecognizer.view as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) {
             let image = images[(indexPath as NSIndexPath).item]
@@ -154,7 +162,15 @@ class MainViewController: UIViewController {
             PeekView().viewForController(parentViewController: self, contentViewController: controller, expectedContentViewFrame: frame, fromGesture: gestureRecognizer, shouldHideStatusBar: true, menuOptions: options, completionHandler: { optionIndex in
                 switch optionIndex {
                 case 0:
-                    print("Option 1 selected")
+                    guard let url = image.url?.url else { break }
+                    KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil, completionHandler: { kfimage, error, cacheType, url in
+                        if let kfimage = kfimage {
+                            UIImageWriteToSavedPhotosAlbum(kfimage, self,
+                                                           #selector(self.saved(_:didFinishSavingWithError:contextInfo:)), nil)
+                        } else {
+                            Drop.down("Check your internet connection", state: .error)
+                        }
+                    })
                 case 1:
                     print("Option 2 selected")
                 default:
