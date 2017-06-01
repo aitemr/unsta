@@ -6,6 +6,7 @@ target 'unsta' do
   pod 'Reusable'
   pod 'Alamofire', '~> 4.4'
   pod 'PeekView'
+  pod 'DZNEmptyDataSet'
   pod 'Sugar', '3.0'
   pod 'Tactile', '~> 2.0'
   pod 'Kingfisher', '~> 3.2.0'

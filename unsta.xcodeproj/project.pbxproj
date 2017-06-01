@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		500DE8E825B5EF2834156D47 /* Pods_unsta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FAD9C085C1F8C4ED3E0F5C /* Pods_unsta.framework */; };
-		9337B9E71EDF1680008D90E9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9E61EDF1680008D90E9 /* SettingsViewController.swift */; };
 		9337B9E91EDF168E008D90E9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9E81EDF168E008D90E9 /* SettingsTableViewCell.swift */; };
 		9337B9EB1EDF16BA008D90E9 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9EA1EDF16BA008D90E9 /* SettingsFooterView.swift */; };
 		9337B9ED1EDF2003008D90E9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337B9EC1EDF2003008D90E9 /* NotificationsTableViewCell.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		55A52E697E8CAA5B3179188F /* Pods-unsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsta.release.xcconfig"; path = "Pods/Target Support Files/Pods-unsta/Pods-unsta.release.xcconfig"; sourceTree = "<group>"; };
 		5ECAE5DFBD4415767307AD10 /* Pods-unsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unsta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unsta/Pods-unsta.debug.xcconfig"; sourceTree = "<group>"; };
-		9337B9E61EDF1680008D90E9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9337B9E81EDF168E008D90E9 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		9337B9EA1EDF16BA008D90E9 /* SettingsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
 		9337B9EC1EDF2003008D90E9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				93B621411EDE91D300A5D9ED /* unsta.entitlements */,
+				A6AB23441EE04A7A003D1FAA /* Extensions */,
 				A6E403171EDEDD09004E117A /* Helpers */,
 				A665EA9D1EDDA75B002999FF /* Models */,
 				A665EA9E1EDDA7B3002999FF /* Views */,
@@ -137,6 +136,13 @@
 				A665EA941EDDA585002999FF /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6AB23441EE04A7A003D1FAA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		A6E403171EDEDD09004E117A /* Helpers */ = {
@@ -259,7 +265,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		889CE7E4D11C7E9E077F8CD4 /* [CP] Copy Pods Resources */ = {

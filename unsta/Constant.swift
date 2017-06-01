@@ -15,7 +15,3 @@ struct Constant {
     static let appUrl = "http://itunes.apple.com/app/\(Constant.appID)"
     static let companyMail = "b.nurdaulet.b@gmail.com"
 }
-
-struct Server {
-    static let url = "https://unsta.me/site/show/"
-}

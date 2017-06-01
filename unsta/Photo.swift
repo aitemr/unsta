@@ -8,9 +8,8 @@
 
 import Foundation
 import Alamofire
-import SVProgressHUD
 
-class Photo: NSObject {
+class Image: NSObject {
     
     var url: String?
     
@@ -18,7 +17,7 @@ class Photo: NSObject {
         self.url = url
     }
     
-    static func fetchPhotoBy(username: String?, completion: @escaping (([Photo]?, String?) -> Void)) {
+    static func fetchImageBy(username: String?, completion: @escaping (([Image]?, String?, Int?) -> Void)) {
         guard let username = username else { return }
         let parameters: [String: Any] = [
             "SearchForm[username]" : username,
@@ -41,26 +40,21 @@ class Photo: NSObject {
                     if response.result.isSuccess {
                         guard let json = response.result.value as? [String: AnyObject],
                             let code =  json["code"] as? Int else {
-                                completion(nil, "Incorrect data format")
+                                completion(nil, "Incorrect data format", nil)
                                 return
                         }
-                        var urls: [Photo] = []
-                        if let photos = json["photos"] as? [[String: AnyObject]], code == 0 {
-                            photos.map {
-                                if let url = $0["url"] {
-                                    let photoUrl = Photo(url: url as! String)
-                                    urls.append(photoUrl)
-                                } else {
-                                    completion(nil, "error")
-                                    SVProgressHUD.dismiss()
-                                }
-                                completion(urls, nil)
-                            }
+                        if let images = json["photos"] as? [[String: AnyObject]], code == 0 {
+                            completion(images.flatMap {
+                                guard let url = $0["url"] as? String else { return nil }
+                                return Image(url: url)
+                            }, nil, code)
+                        }   else {
+                            completion(nil, nil, code)
                         }
                     }
                 }
             case .failure(let encodingError):
-                completion(nil, encodingError.localizedDescription)
+                completion(nil, encodingError.localizedDescription, nil)
             }
         }
     }
