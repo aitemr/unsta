@@ -31,7 +31,6 @@ class NotificationsTableViewCell: UITableViewCell, Reusable {
     fileprivate lazy var tumblerSwitch: UISwitch = {
         let t = UISwitch()
         t.onTintColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
-
         return t
     }()
 

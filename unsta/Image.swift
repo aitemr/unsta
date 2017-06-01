@@ -19,10 +19,12 @@ class Image: NSObject {
     
     static func fetchImageBy(username: String?, completion: @escaping (([Image]?, String?, Int?) -> Void)) {
         guard let username = username else { return }
+        let userDefaults = Foundation.UserDefaults.standard
+        let pushToken  = userDefaults.string(forKey: "pushToken") ?? ""
         let parameters: [String: Any] = [
             "SearchForm[username]" : username,
             "SearchForm[maxid]" : "",
-            "SearchForm[token]" : "token",
+            "SearchForm[token]" : pushToken,
             ]
         
         Alamofire.upload(multipartFormData: { multipartFormData in

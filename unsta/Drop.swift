@@ -12,10 +12,10 @@ public enum DropState {
 
     fileprivate func backgroundColor() -> UIColor? {
         switch self {
-        case .info: return .red
-        case .success: return .red
-        case .warning: return .red
-        case .error: return .red
+        case .info: return #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
+        case .success: return #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
+        case .warning: return #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
+        case .error: return #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
         case .default: return #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2745098039, alpha: 1)
         }
     }
